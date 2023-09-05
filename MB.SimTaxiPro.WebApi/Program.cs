@@ -1,4 +1,7 @@
 
+using MB.SimTaxiPro.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+
 namespace MB.SimTaxiPro.WebApi
 {
     public class Program
@@ -8,6 +11,9 @@ namespace MB.SimTaxiPro.WebApi
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+
+            builder.Services.AddDbContext<SimTaxiProDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("defaultConnection")));
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
