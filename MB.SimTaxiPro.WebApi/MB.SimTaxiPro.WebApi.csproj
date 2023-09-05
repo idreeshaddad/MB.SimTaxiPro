@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MB.SimTaxiPro.Dtos\MB.SimTaxiPro.Dtos.csproj" />
     <ProjectReference Include="..\MB.SimTaxiPro.Entities\MB.SimTaxiPro.Entities.csproj" />
     <ProjectReference Include="..\MB.SimTaxiPro.EntityFrameworkCore\MB.SimTaxiPro.EntityFrameworkCore.csproj" />
   </ItemGroup>

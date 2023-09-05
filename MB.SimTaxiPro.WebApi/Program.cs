@@ -15,6 +15,8 @@ namespace MB.SimTaxiPro.WebApi
             builder.Services.AddDbContext<SimTaxiProDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("defaultConnection")));
 
+            builder.Services.AddAutoMapper(typeof(Program));
+
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
