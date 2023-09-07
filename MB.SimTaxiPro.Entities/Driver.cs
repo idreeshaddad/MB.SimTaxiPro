@@ -1,4 +1,5 @@
 ﻿using MB.SimTaxiPro.Utils.Enums;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MB.SimTaxiPro.Entities
 {
@@ -6,7 +7,7 @@ namespace MB.SimTaxiPro.Entities
     {
         public Driver()
         {
-            Cars = new List<Car>();    
+            Cars = new List<Car>();
         }
 
         public int Id { get; set; }
@@ -15,6 +16,8 @@ namespace MB.SimTaxiPro.Entities
         public string SSN { get; set; }
         public DateTime DateOfBirth { get; set; }
         public Gender Gender { get; set; }
+
+        [NotMapped]
         public string FullName
         {
             get
@@ -25,5 +28,14 @@ namespace MB.SimTaxiPro.Entities
 
 
         public List<Car> Cars { get; set; }
+
+        [NotMapped]
+        public int Age
+        {
+            get
+            {
+                return DateTime.Now.Year - DateOfBirth.Year;
+            }
+        }
     }
 }
