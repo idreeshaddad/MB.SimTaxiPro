@@ -86,6 +86,37 @@ namespace MB.SimTaxiPro.EntityFrameworkCore.Migrations
                     b.ToTable("Drivers");
                 });
 
+            modelBuilder.Entity("MB.SimTaxiPro.Entities.Passenger", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("DateofBirth")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Gender")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Passengers");
+                });
+
             modelBuilder.Entity("MB.SimTaxiPro.Entities.Car", b =>
                 {
                     b.HasOne("MB.SimTaxiPro.Entities.Driver", "Driver")

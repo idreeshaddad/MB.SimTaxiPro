@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MB.SimTaxiPro.EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(SimTaxiProDbContext))]
-    [Migration("20230905174149_Cars_Drivers")]
-    partial class Cars_Drivers
+    [Migration("20230910180344_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,6 +33,9 @@ namespace MB.SimTaxiPro.EntityFrameworkCore.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("DriverId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Manufacturer")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -49,6 +52,8 @@ namespace MB.SimTaxiPro.EntityFrameworkCore.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DriverId");
 
                     b.ToTable("Cars");
                 });
@@ -82,6 +87,51 @@ namespace MB.SimTaxiPro.EntityFrameworkCore.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Drivers");
+                });
+
+            modelBuilder.Entity("MB.SimTaxiPro.Entities.Passenger", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("DateofBirth")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Gender")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Passengers");
+                });
+
+            modelBuilder.Entity("MB.SimTaxiPro.Entities.Car", b =>
+                {
+                    b.HasOne("MB.SimTaxiPro.Entities.Driver", "Driver")
+                        .WithMany("Cars")
+                        .HasForeignKey("DriverId");
+
+                    b.Navigation("Driver");
+                });
+
+            modelBuilder.Entity("MB.SimTaxiPro.Entities.Driver", b =>
+                {
+                    b.Navigation("Cars");
                 });
 #pragma warning restore 612, 618
         }

@@ -184,6 +184,24 @@ namespace MB.SimTaxiPro.WebApi.Controllers
             return Ok();
         }
 
+        [HttpPost]
+        public async Task<IActionResult> UnassignCar(int driverId, int carId)
+        {
+            var car = await _context.Cars.FindAsync(carId);
+
+            if (car == null)
+            {
+                return NotFound();
+            }
+
+            car.DriverId = null;
+
+            _context.Update(car);
+            await _context.SaveChangesAsync();
+
+            return Ok();
+        }
+
         #endregion
 
         #region Private Methods
