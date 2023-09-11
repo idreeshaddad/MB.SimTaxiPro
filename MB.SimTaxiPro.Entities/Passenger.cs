@@ -28,5 +28,7 @@ namespace MB.SimTaxiPro.Entities
                 return DateTime.Now.Year - DateofBirth.Year;
             }
         }
+
+        public List<Booking> Bookings { get; set; } = new List<Booking>();
     }
 }

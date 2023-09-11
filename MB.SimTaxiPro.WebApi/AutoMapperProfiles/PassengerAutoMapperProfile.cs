@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
 using MB.SimTaxiPro.Dtos.Passengers;
 using MB.SimTaxiPro.Entities;
-namespace MB.SimTaxiPro.WebApi.Controllers
+
+namespace MB.SimTaxiPro.WebApi.AutoMapperProfiles
 {
     public class PassengerAutoMapperProfile : Profile
     {
